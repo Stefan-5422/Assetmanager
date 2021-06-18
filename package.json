@@ -5,9 +5,12 @@
   "author": "Stefan-5422",
   "license": "MIT",
   "dependencies": {
-    "cryptojs": "^2.5.3",
+    "crypto-js": "^4.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "mongodb": "^3.6.9"
+    "express-fileupload": "^1.2.1",
+    "mongoose": "^5.12.14",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

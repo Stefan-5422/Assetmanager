@@ -1,69 +1,37 @@
-const Mongo = require('mongodb')
+const mongoose = require("mongoose")
 const uri = 'mongodb://localhost:8081/assets'
 
-const Asset = require('./asset')
+const Asset = require('../asset')
+
+
+const assetModel = mongoose.model('Asset',Asset.shema)
+
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
+const db = mongoose.connection
 
 const insert = async (asset) => {
-    const client = Mongo.MongoClient(uri, { useUnifiedTopology: true });
-    try {
-        await client.connect()
-        const database = await client.db('admin')
-
-        const assets = await database.collection("assets")
-
-
-        await assets.insertOne(asset.serialize())
-
-    } catch {
-        await client.close()
-    }
+    const doc = new assetModel(asset.serialize())
+    doc.save()
 }
 
-const getbyId = async (id) => {
-    const client = Mongo.MongoClient(uri, { useUnifiedTopology: true });
-    let asset
-    try {
-        await client.connect()
-        const database = await client.db('admin')
-        console.log("connected to db")
+const getbyID = async (id) => {
+    const res = await assetModel.find({id: id},(err,result) => result)
+    return res
+}
 
-        const assets = await database.collection("assets")
-
-        asset = await assets.findOne({ "id": id })
-    } catch {
-        await client.close()
-    }
-    return asset
+const getbyChecksum = async (checksum) => {
+    const res = await assetModel.find({checksum: checksum},(err,result) => result)
+    return res
 }
 
 const getAll = async () => {
-    const client = Mongo.MongoClient(uri, { useUnifiedTopology: true });
-    let cursor
-    try {
-        await client.connect()
-        const database = client.db('admin')
-
-        const assets = database.collection("assets")
-
-        cursor = assets.find()
-        } catch {
-        await client.close()
-    }
-    return await cursor.toArray()
+    const res = assetModel.find((err,result) => result)
+    return res
 }
 
-const deleteId = async () => {
-    const client = Mongo.MongoClient(uri, { useUnifiedTopology: true });
-    try {
-        await client.connect()
-        const database = await client.db('admin')
-
-        const assets = await database.collection("assets")
-
-        await assets.deleteOne({ "id": id })
-    } catch {
-        await client.close()
-    }
+const removebyID = async (id) => {
+    const res = await assetModel.deleteOne({id:id})
+    return res.deletedCount;
 }
 
-module.exports = { insert, getbyId, getAll, deleteId }
+module.exports = {insert,getbyID,getbyChecksum,getAll,removebyID}
