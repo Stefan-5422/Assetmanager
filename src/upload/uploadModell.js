@@ -2,9 +2,10 @@ const Asset = require('../asset')
 const {v1} = require('uuid')
 const storage = require('../storage/storageModel')
 const stream = require('stream')
+const ws = require('ws')
+const User = require('../user')
+const userModel = require('../user/userModel')
 
-
-//FIXME: THIS WORKS SOMETIMES TRY TO FIX IT IF YOU FIGURE OUT WHAT IS BORKED
 const handleUpload = async (req) => {
     let file = req.files.file
     let asset = new Asset()
@@ -29,8 +30,17 @@ const handleUpload = async (req) => {
         await file.mv(asset.getlocation())
         await storage.insert(asset)
     }
+
+    const user = new User;
+    user.deserialize(await userModel.getbyID(req.session.uid).then(a=>a[0]))
+
+    user.addimage(asset.getid())
+
+    userModel.changeUser(user)
+
     return asset.serialize()
     
 }
+
 
 module.exports = {handleUpload}

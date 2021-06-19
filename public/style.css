@@ -9,16 +9,49 @@ h1 {
     font-size: 20px;
 }
 
+h4 {
+    font-size: x-small;
+    color: #FF2257;
+    align-self: center;
+}
+
+::placeholder {
+    color: #aaa;
+}
+
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    min-height: 80vh;
     width: 100%;
     flex-direction: column;
 }
 
-button {
+label {
+    font-size: small;
+    margin-top: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background-color: transparent;
+    color: #fff;
+    
+    border: solid 1px #868686;
+    border-radius: 5px;
+    outline:none;
+}
+
+input:focus, input:hover {
+    border: solid 1px #1F89E5;
+}
+
+button.styled, input.styled {
     color: #FF2257;
     padding:5px;
     background-color: transparent;
@@ -27,7 +60,17 @@ button {
     transition: all 0.3s;
 }
 
-button:hover {
+button.styled:hover, input.styled:hover {
     color: #fff;
     background-color: #FF2257;
+}
+
+p {
+    font-size: x-small;
+}
+
+a, a:visited  {
+    text-decoration: none;
+    color: #FF2257;
+
 }

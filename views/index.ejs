@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css">
+    <title>I really need a name for this</title>
+    <%- include('./partials/header') %>
 </head>
 
 <body>
@@ -17,7 +15,7 @@
             <h1>Definitly not a stolen design</h1>
         </div>
         <div id="dragdrop" ondragover="dragover(event)" ondrop="drop(event)" ondragenter="dragenter(event)">
-            <button onclick="filebutton()">
+            <button onclick="filebutton()" class="styled">
                 Click here or drag & drop files
             </button>
         </div>

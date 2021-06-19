@@ -5,12 +5,15 @@
   "author": "Stefan-5422",
   "license": "MIT",
   "dependencies": {
+    "connect-mongo": "^4.4.1",
     "crypto-js": "^4.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2",
     "mongoose": "^5.12.14",
     "uuid": "^8.3.2",
+    "ws": "^7.5.0",
     "yarn": "^1.22.10"
   },
   "devDependencies": {

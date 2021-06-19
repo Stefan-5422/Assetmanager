@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/header') %>
+    <title>I really need a name for this thing - <%=user.getname()%></title>
+</head>
+<body>
+    <main >
+        <h1><%=user.getname()%>'s uploads:</h1>
+            <%user.getimages().forEach(a=>{%>
+                <img src="/asset/<%= a %>" style="width:70%; max-width: 500px;"></img><br> 
+            <%})%>
+    </main>
+</body>
+</html>

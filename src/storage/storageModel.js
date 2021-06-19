@@ -1,13 +1,9 @@
 const mongoose = require("mongoose")
-const uri = 'mongodb://localhost:8081/assets'
-
 const Asset = require('../asset')
 
 
 const assetModel = mongoose.model('Asset',Asset.shema)
 
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
-const db = mongoose.connection
 
 const insert = async (asset) => {
     const doc = new assetModel(asset.serialize())

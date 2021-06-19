@@ -1,7 +1,5 @@
-const crypto = require('crypto-js'), fs = require('fs')
-const path = require('path')
+const crypto = require('crypto-js')
 const mongoose = require("mongoose")
-const  {Readable} = require("stream")
 
 class Asset {
     #id
@@ -50,7 +48,6 @@ const hashfile = async (file) => {
     })
     try {
         let res = await hash;
-        console.log("function:" +res)
         return res
     } catch (err) {
         console.log("Error generating image hash: " + err)

@@ -1,6 +1,16 @@
 const express = require('express')
 const app = express()
 const fileUpload = require('express-fileupload')
+const mongoose = require("mongoose")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")
+
+const connection = mongoose.connection
+
+//start the database
+const uri = 'mongodb://localhost:8081/asset'
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
+
 
 //Include top level routers
 const backendRouter = require('./routes/backendRouter.js')
@@ -8,6 +18,16 @@ const frontendRouter = require('./routes/frontendRouter.js')
 
 //set viewengine to render ejs templates
 app.set('view engine', 'ejs')
+
+//Use sessions to track logins
+app.use(session({
+    secret: 'mysupersafesecretthatiwilldefinitlynotchangelater',
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+        mongoUrl: uri
+    })
+}))
 
 //Enable body parser to be able to hande POST requests
 app.use(express.json())
