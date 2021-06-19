@@ -6,13 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-    <form action="/api/upload/" enctype="multipart/form-data" method="POST">
-        <input type="file" name="file" id="file"/>
-        <input type="submit"/>
-    </form>
-</body>
+    <main>
+        <div>
+            <h1>Definitly not a stolen design</h1>
+        </div>
+        <div id="dragdrop" ondragover="dragover(event)" ondrop="drop(event)" ondragenter="dragenter(event)">
+            <button onclick="filebutton()">
+                Click here or drag & drop files
+            </button>
+        </div>
 
+        <div style="display:none">
+            <form action="/api/upload" method="post" id="fileform">
+                <input type="file" name="file" id="file" onchange="change()" style="display:none" />
+            </form>
+        </div>
+    </main>
+</body>
+<script src="/static/files.js"></script>
 </html>

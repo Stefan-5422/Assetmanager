@@ -1,0 +1,33 @@
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+button {
+    color: #FF2257;
+    padding:5px;
+    background-color: transparent;
+    border: solid 1px #FF2257;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+button:hover {
+    color: #fff;
+    background-color: #FF2257;
+}
