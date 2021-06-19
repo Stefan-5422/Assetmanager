@@ -32,7 +32,7 @@ class User {
         }
     }
     addimage(id) {
-        if(this.#images.includes(id)) return;
+        if(this.#images.includes(id)) return
         this.#images.push(id)
     }
 }

@@ -6,7 +6,7 @@ const homeRouter = require('../src/home/homeController')
 
 router.use('/static',express.static('public'))
 router.use('/asset',express.static('storage',{
-    extensions:['png','jpg','jpeg','mp4'],
+    extensions:['png','jpg','jpeg','mp4','gif','jfif','svg','tiff','bmp','webp','raw'],
 }))
 
 router.use('/',userRouter.frontend)

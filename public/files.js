@@ -1,17 +1,17 @@
-const dragdrop = document.getElementById('dragdrop'), file = document.getElementById('file')
+const dragdrop = document.getElementById('dragdrop'), file = document.getElementById('file'), fileroot = document.getElementById('imgroot')
 
-const submit = (file) => {
+const submit = async (file) => {
     const formData = new FormData();
     formData.append('file',file)
 
-    fetch('/api/upload', {
+    const response = await fetch('/api/upload', {
         method: 'POSt',
         body: formData
-    })
+    }).then(a=>a.json())
+    fileroot.innerHTML += `<div style="width:33%"><img src="/asset/${await response.id}" style="max-width: 100%;" /></div>`
 }
 
-
-const filebutton =  () => {
+const filebutton = () => {
     file.click()
 }
 
@@ -30,11 +30,15 @@ const drop = ev => {
     ev.stopPropagation()
     ev.preventDefault()
     const dt = ev.dataTransfer;
-    const file = dt.files[0]
-    submit(file)
+    const file = dt.files
+    Array.from(file).forEach(f => submit(f))
 }
 
 
 const change = ()=> {
-    submit(file.files[0])
+    Array.from(file.files).forEach(f => {
+        submit(f)
+    })
 }
+
+document.onload = (a)=>copyimg("yes")

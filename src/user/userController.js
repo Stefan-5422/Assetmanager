@@ -21,7 +21,7 @@ berouter.post("/register", async (req,res) => {
         //TODO: update this to render an error message in the register Page
         res.redirect("/login")
     }
-    res.render("register",{error:"Wrong username or password"})
+    res.render("register",{error:"Username already exists"})
 })
 
 berouter.post("/auth", async (req,res) => {
