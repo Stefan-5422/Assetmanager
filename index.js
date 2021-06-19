@@ -8,7 +8,7 @@ const MongoStore = require("connect-mongo")
 const connection = mongoose.connection
 
 //start the database
-const uri = 'mongodb://localhost:27017/asset'
+const uri = 'mongodb://0.0.0.0:27017/asset'
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 
 
