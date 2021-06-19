@@ -9,7 +9,8 @@ router.post('/', async (req,res) => {
             message: 'No file'
         })
     }else {
-        res.send(await uploadModell.handleUpload(req))
+        await uploadModell.handleUpload(req)
+        res.redirect('/')
     }
 })
 
